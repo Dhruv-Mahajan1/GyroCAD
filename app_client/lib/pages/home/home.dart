@@ -48,8 +48,7 @@ class _HomeViewState extends State<HomeView> {
       return;
     }
 
-    var URL =
-        'ws://${_ipEditingController.text}:8080';
+    var URL = 'ws://${_ipEditingController.text}:8080';
 
     try {
       WebSocket.connect(URL).then((ws) {
@@ -127,22 +126,21 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('GyroCAD'),
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.black,
       ),
       body: Container(
         padding: const EdgeInsets.all(20.0),
+        color: Colors.blueGrey,
         child: Column(
           children: <Widget>[
             const Padding(padding: EdgeInsets.only(bottom: 40.0)),
-            customTextField(
-                _ipEditingController, 'Put the Web Socket IP here'),
+            customTextField(_ipEditingController, 'Put Server IP here'),
             const Padding(padding: EdgeInsets.only(bottom: 5.0)),
             // customTextField(
             //     _portEditingController, 'PORT Server Example: 8080'),
             const Padding(padding: EdgeInsets.only(bottom: 20.0)),
             OutlinedButton(
-              child: Text(
-                  !_socketIsConnected ? 'Connect Server' : 'Disconnect Server'),
+              child: Text(!_socketIsConnected ? 'Connect' : 'Disconnect'),
               onPressed: () {
                 if (!_socketIsConnected) {
                   _connectSocketChannel();
@@ -157,8 +155,7 @@ class _HomeViewState extends State<HomeView> {
             ),
             const Padding(padding: EdgeInsets.only(bottom: 20.0)),
             Text(_status),
-            const Padding(padding: EdgeInsets.only(bottom: 20.0)),
-            const Padding(padding: EdgeInsets.only(bottom: 10.0)),
+
             OutlinedButton(
               child: Text(!sensorIsActivated ? 'Start' : 'Stop'),
               onPressed: () {

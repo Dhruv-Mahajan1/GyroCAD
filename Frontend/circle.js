@@ -1,5 +1,4 @@
-
-    const scene = new THREE.Scene();
+const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
@@ -11,16 +10,12 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-
 const radius = 0.2;
-    const segments = 32;
-    const geometry = new THREE.CircleGeometry(radius, segments);
-    const material = new THREE.MeshBasicMaterial({color: 0xff0000});
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
-
-
-
+const segments = 32;
+const geometry = new THREE.CircleGeometry(radius, segments);
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
 
 camera.position.z = 5;
 let gyroData;
@@ -35,8 +30,6 @@ let prevTime = performance.now();
 let cubeVelocity = new THREE.Vector3();
 let cubeRotation = new THREE.Vector3();
 
-
-
 function updateCubeMotion() {
   if (gyroData && accelData) {
     const alpha = gyroData[0];
@@ -47,25 +40,28 @@ function updateCubeMotion() {
     const y = accelData[1];
     const z = accelData[2];
 
-    const time = performance.now();
-    const deltaTime = (time - prevTime) / 1000;
-    prevTime = time;
+    // const time = performance.now();
+    // const deltaTime = (time - prevTime) / 1000;
+    // prevTime = time;
 
-    if (Math.abs(x) > 1) {
-      cube.position.x += -x * deltaTime;
-      let t = cube.position.x - x * deltaTime;
-      if (t >= 6.23) cube.position.x = 6.23;
-      else if (t <= -6.31) cube.position.x = -6.31;
-      else cube.position.x = t;
-    }
-    if (Math.abs(y) > 1) {
-      let t = cube.position.y + y * deltaTime;
-      if (t >= 3) cube.position.y = 3;
-      else if (t <= -2.83) cube.position.y = -2.83;
-      else cube.position.y = t;
-    }
+    // if (Math.abs(x) > 1) {
+    //   cube.position.x += -x * deltaTime;
+    //   let t = cube.position.x - x * deltaTime;
+    //   if (t >= 6.23) cube.position.x = 6.23;
+    //   else if (t <= -6.31) cube.position.x = -6.31;
+    //   else cube.position.x = t;
+    // }
+    // if (Math.abs(y) > 1) {
+    //   let t = cube.position.y + y * deltaTime;
+    //   if (t >= 3) cube.position.y = 3;
+    //   else if (t <= -2.83) cube.position.y = -2.83;
+    //   else cube.position.y = t;
+    // }
 
-    console.log(cube.position.x, cube.position.y);
+    // console.log(cube.position.x, cube.position.y);
+    cube.position.x = x;
+    cube.position.y = y;
+    cube.position.z = z;
   }
 }
 
