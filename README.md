@@ -1,5 +1,11 @@
 ---
 
+# Demo
+
+[![Video Title]](assets\video1.mp4)
+[![Video Title]](assets\video2.mp4)
+[![Video Title]](assets\video3.mp4)
+
 # Problem statement
 
 In today's era, the experience of people can be improved with technology. One such area is the ability to control 3D objects on desktops or laptops using mobile and smartwatches. This ability can also be extended to enhance user gameplay experience by providing them the experience of the virtual joystick to control rotation and motion objects in a game like 3d maze etc
