@@ -63,6 +63,7 @@ Traditionally users make use of a mouse or keyboard to control objects, which is
 2. Playing Game:
 
    Using the app a user can convert his/her smartwatch or mobile phone into a virtual joystick and controller that can be incorporated with games providing a better experience
+   Game Credits:https://youtu.be/bTk6dcAckuI
 
 # Run Locally
 
