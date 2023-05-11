@@ -1,10 +1,6 @@
 ---
 
-# Demo
 
-[![Video Title]](assets\video1.mp4)
-[![Video Title]](assets\video2.mp4)
-[![Video Title]](assets\video3.mp4)
 
 # Problem statement
 
