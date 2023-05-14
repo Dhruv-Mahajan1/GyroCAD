@@ -19,6 +19,8 @@ const responseData = {
   gyrx: " ",
   gyry: " ",
   gyrz: " ",
+  apptime: " ",
+  time: " ",
 };
 
 const wss = new WebSocket.Server({ port: 8080 });
@@ -28,13 +30,15 @@ wss.on("connection", function connection(ws) {
   ws.on("message", function incoming(data) {
     data = data.toString();
     var jsonObject = JSON.parse(data);
-    // console.log(data);
+    const currentTime = new Date().getTime();
     responseData.accx = jsonObject[0];
     responseData.accy = jsonObject[1];
     responseData.accz = jsonObject[2];
     responseData.gyrx = jsonObject[3];
     responseData.gyry = jsonObject[4];
     responseData.gyrz = jsonObject[5];
+    responseData.apptime = jsonObject[6];
+    responseData.time = currentTime;
   });
 
   ws.on("close", function close() {

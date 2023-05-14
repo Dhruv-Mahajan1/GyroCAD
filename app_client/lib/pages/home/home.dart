@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:web_socket_channel/io.dart';
 import 'package:flutter/material.dart';
 import 'package:sensors/sensors.dart';
+import 'dart:core';
 
 class HomeView extends StatefulWidget {
   @override
@@ -87,6 +88,7 @@ class _HomeViewState extends State<HomeView> {
     }
 
     if (_socketIsConnected) {
+      final currentTime = DateTime.now().millisecondsSinceEpoch;
       sendMessage('${[
         currentAccel.x,
         currentAccel.y,
@@ -94,6 +96,7 @@ class _HomeViewState extends State<HomeView> {
         currentGyro.x,
         currentGyro.y,
         currentGyro.z,
+        currentTime
       ]}');
     }
   }
