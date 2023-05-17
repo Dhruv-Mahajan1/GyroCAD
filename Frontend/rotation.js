@@ -27,6 +27,39 @@ let prevTime = performance.now();
 let cubeVelocity = new THREE.Vector3();
 let cubeRotation = new THREE.Vector3();
 
+
+
+
+class CircularBuffer {
+  constructor(size) {
+    this.size = size;
+    this.buffer = new Array(size);
+    this.currentIndex = 0;
+    this.isFull = false;
+  }
+
+  add(element) {
+    this.buffer[this.currentIndex] = element;
+    this.currentIndex = (this.currentIndex + 1) % this.size;
+    if (this.currentIndex === 0) {
+      this.isFull = true;
+    }
+  }
+
+  get(index) {
+    if (index < 0 || index >= this.size) {
+      throw new Error('Index out of range');
+    }
+    const adjustedIndex = (this.currentIndex + index) % this.size;
+    return this.buffer[adjustedIndex];
+  }
+}
+
+const circularBufferX = new CircularBuffer(1000);
+const circularBufferY = new CircularBuffer(1000);
+const circularBufferZ = new CircularBuffer(1000);
+
+
 function updateCubeOrientation() {
   if (gyroData && accelData) {
     const alpha = gyroData[0];
@@ -37,6 +70,12 @@ function updateCubeOrientation() {
     const y = accelData[1];
     const z = accelData[2];
 
+    circularBufferX.add(alpha);
+    circularBufferY.add(beta);
+    circularBufferZ.add(gamma);
+
+
+
     const time = performance.now();
     const deltaTime = (time - prevTime) / 1000;
     prevTime = time;
@@ -46,6 +85,12 @@ function updateCubeOrientation() {
     if (Math.abs(gamma * deltaTime) > 0.1) cube.rotation.z += gamma * deltaTime;
   }
 }
+
+console.log(circularBufferX.get(0));
+
+
+
+
 
 
 setInterval(() => {
