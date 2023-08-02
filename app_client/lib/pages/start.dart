@@ -1,7 +1,6 @@
 import 'package:app_client/pages/Ins_Bluetooth.dart';
 import 'package:app_client/pages/bluetooth.dart';
 import 'package:app_client/pages/home/home.dart';
-import 'package:app_client/pages/qr.dart';
 import 'package:flutter/material.dart';
 import 'package:app_client/pages/widgets.dart';
 import 'package:app_client/pages/instructions.dart';
@@ -41,10 +40,6 @@ class _Start_PageState extends State<Start_Page> {
                 firebaseUIButton(context, "Configure Your IP", () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => HomeView()));
-                }),
-                firebaseUIButton(context, "Scan QR", () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ScanQR()));
                 }),
               ],
             ),
